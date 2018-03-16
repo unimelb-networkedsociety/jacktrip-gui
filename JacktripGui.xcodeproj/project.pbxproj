@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37742271205A3BD800793886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37742270205A3BD800793886 /* AppDelegate.swift */; };
-		37742273205A3BD800793886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37742272205A3BD800793886 /* ViewController.swift */; };
+		37742273205A3BD800793886 /* JacktripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37742272205A3BD800793886 /* JacktripViewController.swift */; };
 		37742275205A3BD800793886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37742274205A3BD800793886 /* Assets.xcassets */; };
 		37742278205A3BD800793886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37742276205A3BD800793886 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		3774226D205A3BD800793886 /* JacktripGui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JacktripGui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37742270205A3BD800793886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37742272205A3BD800793886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		37742272205A3BD800793886 /* JacktripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JacktripViewController.swift; sourceTree = "<group>"; };
 		37742274205A3BD800793886 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37742277205A3BD800793886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37742279205A3BD800793886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,14 +53,22 @@
 		3774226F205A3BD800793886 /* JacktripGui */ = {
 			isa = PBXGroup;
 			children = (
-				37742270205A3BD800793886 /* AppDelegate.swift */,
-				37742272205A3BD800793886 /* ViewController.swift */,
-				37742274205A3BD800793886 /* Assets.xcassets */,
+				37742280205A3E4200793886 /* Supporting Files */,
+				37742272205A3BD800793886 /* JacktripViewController.swift */,
 				37742276205A3BD800793886 /* Main.storyboard */,
-				37742279205A3BD800793886 /* Info.plist */,
-				3774227A205A3BD800793886 /* JacktripGui.entitlements */,
 			);
 			path = JacktripGui;
+			sourceTree = "<group>";
+		};
+		37742280205A3E4200793886 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3774227A205A3BD800793886 /* JacktripGui.entitlements */,
+				37742270205A3BD800793886 /* AppDelegate.swift */,
+				37742274205A3BD800793886 /* Assets.xcassets */,
+				37742279205A3BD800793886 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37742273205A3BD800793886 /* ViewController.swift in Sources */,
+				37742273205A3BD800793886 /* JacktripViewController.swift in Sources */,
 				37742271205A3BD800793886 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,11 +271,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JacktripGui/JacktripGui.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "JacktripGui/Supporting Files/JacktripGui.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z4D95JBCN9;
-				INFOPLIST_FILE = JacktripGui/Info.plist;
+				INFOPLIST_FILE = "JacktripGui/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nsi.JacktripGui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -279,11 +287,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JacktripGui/JacktripGui.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "JacktripGui/Supporting Files/JacktripGui.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z4D95JBCN9;
-				INFOPLIST_FILE = JacktripGui/Info.plist;
+				INFOPLIST_FILE = "JacktripGui/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nsi.JacktripGui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
