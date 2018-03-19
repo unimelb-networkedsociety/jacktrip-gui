@@ -10,7 +10,9 @@ import Cocoa
 import Foundation
 
 class JacktripViewController: NSViewController {
+    // should hold a list of processes.
     var jacktripTask: Process!
+    
     let portData = [
         ["port": "1", "operation": "connect"],
         ["port": "2", "operation": "connect"],
@@ -18,7 +20,6 @@ class JacktripViewController: NSViewController {
         ["port": "4", "operation": "connect"]
     ]
     
-
     @IBOutlet var serverTableView: NSTableView!
     
     @IBOutlet var logTextView: NSTextView!
@@ -30,7 +31,7 @@ class JacktripViewController: NSViewController {
         print(ip.stringValue, port.stringValue)
         shell(args:["-c",ip.stringValue, port.stringValue])
     }
-
+    
     @IBAction func startServer(_ sender: NSButton) {
         print("starting server")
         shell(args: ["-s"])
@@ -40,32 +41,45 @@ class JacktripViewController: NSViewController {
         self.serverTableView.delegate = self
         self.serverTableView.dataSource = self
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     
     func shell(args: [String]) {
-
+        
         self.jacktripTask = Process()
         self.jacktripTask.executableURL = URL(fileURLWithPath: "/usr/local/bin/jacktrip")
         self.jacktripTask.arguments = args
-
+        
         let pipe = Pipe()
         self.jacktripTask.standardOutput = pipe
         self.jacktripTask.standardError = pipe
         let outHandle = pipe.fileHandleForReading
+        outHandle.waitForDataInBackgroundAndNotify()
         
-        outHandle.readabilityHandler = { pipe in
-            if let line = String(data: pipe.availableData, encoding: String.Encoding.utf8) {
-                DispatchQueue.main.async { // Correct
-                    self.logTextView.string += "\(line)\n"
+        var obs1 : NSObjectProtocol!
+        obs1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
+          object: outHandle, queue: nil) {  notification -> Void in
+            let data = outHandle.availableData
+            if data.count > 0 {
+                if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
+                    self.logTextView.string += "\(str)\n"
                 }
+                outHandle.waitForDataInBackgroundAndNotify()
             } else {
-                print("Error decoding data: \(pipe.availableData)")
+                print("EOF on stdout from process")
+                NotificationCenter.default.removeObserver(obs1)
             }
+        }
+        
+        var obs2 : NSObjectProtocol!
+        obs2 = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
+          object: self.jacktripTask, queue: nil) { notification -> Void in
+            print("terminated")
+            NotificationCenter.default.removeObserver(obs2)
         }
         
         try! self.jacktripTask.run()
@@ -92,4 +106,3 @@ extension JacktripViewController:NSTableViewDataSource, NSTableViewDelegate{
     }
     
 }
-
