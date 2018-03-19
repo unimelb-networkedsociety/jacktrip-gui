@@ -14,14 +14,13 @@ class JacktripViewController: NSViewController {
     var jacktripTask: Process!
     
     let portData = [
-        ["port": "1", "operation": "connect"],
-        ["port": "2", "operation": "connect"],
-        ["port": "3", "operation": "connect"],
-        ["port": "4", "operation": "connect"]
+        ["port": "0", "status": "idle", "operation": "connect"],
+        ["port": "1", "status": "idle", "operation": "connect"],
+        ["port": "2", "status": "idle", "operation": "connect"],
+        ["port": "3", "status": "idle", "operation": "connect"]
     ]
     
     @IBOutlet var serverTableView: NSTableView!
-    
     @IBOutlet var logTextView: NSTextView!
     
     @IBOutlet weak var ip: NSTextField!
@@ -29,13 +28,18 @@ class JacktripViewController: NSViewController {
     @IBAction func connectToServer(_ sender: NSButtonCell) {
         // shell command to connect: jacktrip -c [ip] [port]
         print(ip.stringValue, port.stringValue)
-        shell(args:["-c",ip.stringValue, port.stringValue])
+        shell(args:["-c",ip.stringValue, "-o\(port.stringValue)0"])
     }
     
     @IBAction func startServer(_ sender: NSButton) {
-        print("starting server")
-        shell(args: ["-s"])
+
+        let indexPath = serverTableView.row(for: sender)
+        let port = portData[indexPath]["port"]!
+        print("starting server at -o\(port)0")
+        // shell command to start server: jacktrip -s [port]
+        shell(args: ["-s", "-o\(port)0"])
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.serverTableView.delegate = self
