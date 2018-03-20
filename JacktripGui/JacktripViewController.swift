@@ -10,38 +10,36 @@ import Cocoa
 import Foundation
 
 class JacktripViewController: NSViewController {
-    // should hold a list of processes.
-    var jacktripTask: Process!
-    
     let portData = [
-        ["port": "0", "status": "idle", "operation": "connect"],
-        ["port": "1", "status": "idle", "operation": "connect"],
-        ["port": "2", "status": "idle", "operation": "connect"],
-        ["port": "3", "status": "idle", "operation": "connect"]
+        ["port": "0", "operation": "connect"],
+        ["port": "1", "operation": "connect"],
+        ["port": "2", "operation": "connect"],
+        ["port": "3", "operation": "connect"]
     ]
     
     @IBOutlet var serverTableView: NSTableView!
     @IBOutlet var logTextView: NSTextView!
-    
     @IBOutlet weak var ip: NSTextField!
     @IBOutlet weak var port: NSTextField!
+    
     @IBAction func connectToServer(_ sender: NSButtonCell) {
-        // shell command to connect: jacktrip -c [ip] [port]
-        print(ip.stringValue, port.stringValue)
-        shell(args:["-c",ip.stringValue, "-o\(port.stringValue)0"])
+        JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
     }
     
     @IBAction func startServer(_ sender: NSButton) {
-
         let indexPath = serverTableView.row(for: sender)
         let port = portData[indexPath]["port"]!
-        print("starting server at -o\(port)0")
-        // shell command to start server: jacktrip -s [port]
-        shell(args: ["-s", "-o\(port)0"])
+        JacktripCore.instance.startServer(port)
     }
-
+    
+    @IBAction func clearLog(_ sender: Any) {
+        JacktripCore.instance.clearLog()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(JacktripViewController.updateLog), name: NSNotification.Name(rawValue: ProcessPipeNotificationKey), object: nil)
+            
         self.serverTableView.delegate = self
         self.serverTableView.dataSource = self
     }
@@ -52,41 +50,8 @@ class JacktripViewController: NSViewController {
         }
     }
     
-    func shell(args: [String]) {
-        
-        self.jacktripTask = Process()
-        self.jacktripTask.executableURL = URL(fileURLWithPath: "/usr/local/bin/jacktrip")
-        self.jacktripTask.arguments = args
-        
-        let pipe = Pipe()
-        self.jacktripTask.standardOutput = pipe
-        self.jacktripTask.standardError = pipe
-        let outHandle = pipe.fileHandleForReading
-        outHandle.waitForDataInBackgroundAndNotify()
-        
-        var obs1 : NSObjectProtocol!
-        obs1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
-          object: outHandle, queue: nil) {  notification -> Void in
-            let data = outHandle.availableData
-            if data.count > 0 {
-                if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    self.logTextView.string += "\(str)\n"
-                }
-                outHandle.waitForDataInBackgroundAndNotify()
-            } else {
-                print("EOF on stdout from process")
-                NotificationCenter.default.removeObserver(obs1)
-            }
-        }
-        
-        var obs2 : NSObjectProtocol!
-        obs2 = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
-          object: self.jacktripTask, queue: nil) { notification -> Void in
-            print("terminated")
-            NotificationCenter.default.removeObserver(obs2)
-        }
-        
-        try! self.jacktripTask.run()
+    @objc func updateLog() {
+        logTextView.string = JacktripCore.instance.output
     }
 }
 
@@ -96,7 +61,6 @@ extension JacktripViewController:NSTableViewDataSource, NSTableViewDelegate{
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
-        
         if tableColumn?.identifier.rawValue == "operation"{
             let result = tableView.makeView(withIdentifier:NSUserInterfaceItemIdentifier(rawValue: "operation"), owner: self) as! NSButton
             result.title = portData[row]["operation"]!
@@ -106,7 +70,6 @@ extension JacktripViewController:NSTableViewDataSource, NSTableViewDelegate{
             result.textField?.stringValue = portData[row][(tableColumn?.identifier.rawValue)!]!
             return result
         }
-        
     }
-    
 }
+

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370B4A612060AB9500DD0ABE /* JacktripCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B4A602060AB9500DD0ABE /* JacktripCore.swift */; };
+		370B4A632060B9B300DD0ABE /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B4A622060B9B300DD0ABE /* GlobalConstants.swift */; };
 		37742271205A3BD800793886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37742270205A3BD800793886 /* AppDelegate.swift */; };
 		37742273205A3BD800793886 /* JacktripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37742272205A3BD800793886 /* JacktripViewController.swift */; };
 		37742275205A3BD800793886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37742274205A3BD800793886 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370B4A602060AB9500DD0ABE /* JacktripCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JacktripCore.swift; sourceTree = "<group>"; };
+		370B4A622060B9B300DD0ABE /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		3774226D205A3BD800793886 /* JacktripGui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JacktripGui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37742270205A3BD800793886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37742272205A3BD800793886 /* JacktripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JacktripViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 			children = (
 				37742280205A3E4200793886 /* Supporting Files */,
 				37742272205A3BD800793886 /* JacktripViewController.swift */,
+				370B4A622060B9B300DD0ABE /* GlobalConstants.swift */,
+				370B4A602060AB9500DD0ABE /* JacktripCore.swift */,
 				37742276205A3BD800793886 /* Main.storyboard */,
 			);
 			path = JacktripGui;
@@ -144,6 +150,8 @@
 			files = (
 				37742273205A3BD800793886 /* JacktripViewController.swift in Sources */,
 				37742271205A3BD800793886 /* AppDelegate.swift in Sources */,
+				370B4A632060B9B300DD0ABE /* GlobalConstants.swift in Sources */,
+				370B4A612060AB9500DD0ABE /* JacktripCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
