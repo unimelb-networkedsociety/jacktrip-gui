@@ -62,8 +62,7 @@
 			children = (
 				370B4A6B2061FDAD00DD0ABE /* JacktripViewController.swift */,
 			);
-			name = Controller;
-			path = "New Group";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		37742264205A3BD800793886 = {
