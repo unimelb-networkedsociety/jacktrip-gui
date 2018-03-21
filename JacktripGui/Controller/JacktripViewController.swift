@@ -22,14 +22,22 @@ class JacktripViewController: NSViewController {
     @IBOutlet weak var ip: NSTextField!
     @IBOutlet weak var port: NSTextField!
     
-    @IBAction func connectToServer(_ sender: NSButtonCell) {
-        JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
+    @IBAction func clientOperation(_ sender: ProcessTrigger) {
+        if (sender.title == "connect") {
+             sender.process = JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
+        } else {
+            JacktripCore.instance.killProcess(target: sender.process!)
+        }
     }
     
-    @IBAction func startServer(_ sender: NSButton) {
-        let indexPath = serverTableView.row(for: sender)
-        let port = portData[indexPath]["port"]!
-        JacktripCore.instance.startServer(port)
+    @IBAction func serverOperation(_ sender: ProcessTrigger) {
+        if (sender.title == "connect") {
+            let indexPath = serverTableView.row(for: sender)
+            let port = portData[indexPath]["port"]!
+            sender.process = JacktripCore.instance.startServer(port)
+        } else {
+            JacktripCore.instance.killProcess(target: sender.process!)
+        }
     }
     
     @IBAction func clearLog(_ sender: Any) {

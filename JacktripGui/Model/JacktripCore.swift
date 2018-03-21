@@ -19,14 +19,18 @@ class JacktripCore {
         }
     }
     
-    func startServer(_ port: String) {
+    func startServer(_ port: String) -> Process {
         // shell command to start server: jacktrip -s [port]
-        invokeProcess(args:["-s", "-o\(port)0"])
+        return invokeProcess(args:["-s", "-o\(port)0"])
     }
     
-    func startClient(_ ip: String, _ port: String) {
+    func startClient(_ ip: String, _ port: String) -> Process {
         // shell command to connect: jacktrip -c [ip] [port]
-        invokeProcess(args:["-c", ip, "-o\(port)0"])
+        return invokeProcess(args:["-c", ip, "-o\(port)0"])
+    }
+    
+    func checkProcessStatus(target: Process) -> Bool {
+        return target.isRunning
     }
     
     func killAllProcess() {
@@ -35,16 +39,18 @@ class JacktripCore {
                 process.terminate()
             }
         }
+        
+        jacktripProcesses = []
     }
     
-    private func killProcess(target: Process) {
+    func killProcess(target: Process) {
         if(target.isRunning){
             target.terminate()
             jacktripProcesses.remove(at: jacktripProcesses.index(of: target)!)
         }
     }
     
-    private func invokeProcess(args: [String]) {
+    private func invokeProcess(args: [String]) -> Process {
         let task = Process()
         task.executableURL = URL(fileURLWithPath: jacktripURL)
         task.arguments = args;
@@ -75,6 +81,11 @@ class JacktripCore {
         obs2 = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
           object: task, queue: nil) { notification -> Void in
             NotificationCenter.default.removeObserver(obs2)
+            print("terminated")
+            
+            if let id = self.jacktripProcesses.index(of: task) {
+                self.jacktripProcesses.remove(at: id)
+            }
         }
         
         do {
@@ -82,6 +93,8 @@ class JacktripCore {
         } catch {
             print("Unexpected error: \(error).")
         }
+        
+        return task
     }
     
     func clearLog() {

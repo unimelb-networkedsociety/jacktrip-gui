@@ -725,7 +725,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WKV-jT-vez">
-                                                <rect key="frame" x="53" y="0.0" width="188" height="22"/>
+                                                <rect key="frame" x="53" y="0.0" width="189" height="22"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="IP Address" drawsBackground="YES" id="ZU6-FX-DkX">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -733,20 +733,20 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Spn-b9-KJ5">
-                                                <rect key="frame" x="251" y="0.0" width="188" height="22"/>
+                                                <rect key="frame" x="252" y="0.0" width="189" height="22"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Port" drawsBackground="YES" id="5VD-19-WHq">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-de-4yx">
-                                                <rect key="frame" x="443" y="-6" width="92" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hZZ-4I-Pc9">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-de-4yx" customClass="ProcessTrigger" customModule="JacktripGui" customModuleProvider="target">
+                                                <rect key="frame" x="445" y="-6" width="90" height="32"/>
+                                                <buttonCell key="cell" type="push" title="connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hZZ-4I-Pc9">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                     <connections>
-                                                        <action selector="connectToServer:" target="XfG-lQ-9wD" id="Yuz-1x-H9I"/>
+                                                        <action selector="clientOperation:" target="XfG-lQ-9wD" id="nly-ea-Xm6"/>
                                                     </connections>
                                                 </buttonCell>
                                             </button>
@@ -837,7 +837,7 @@
                                                                     </textFieldCell>
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
-                                                                        <button identifier="operation" verticalHuggingPriority="750" id="Nlp-vL-vmx">
+                                                                        <button identifier="operation" verticalHuggingPriority="750" id="Nlp-vL-vmx" customClass="ProcessTrigger" customModule="JacktripGui" customModuleProvider="target">
                                                                             <rect key="frame" x="339" y="1" width="132" height="32"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y0r-Uv-Emz">
@@ -845,7 +845,7 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                             <connections>
-                                                                                <action selector="startServer:" target="XfG-lQ-9wD" id="pJn-jc-Opn"/>
+                                                                                <action selector="serverOperation:" target="XfG-lQ-9wD" id="7aI-Bs-r4C"/>
                                                                             </connections>
                                                                         </button>
                                                                     </prototypeCellViews>
@@ -925,8 +925,8 @@
                                         </customSpacing>
                                     </stackView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KJF-sf-fLf">
-                                        <rect key="frame" x="463" y="-7" width="72" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TyI-0k-Yvp">
+                                        <rect key="frame" x="465" y="-7" width="70" height="32"/>
+                                        <buttonCell key="cell" type="push" title="clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TyI-0k-Yvp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
