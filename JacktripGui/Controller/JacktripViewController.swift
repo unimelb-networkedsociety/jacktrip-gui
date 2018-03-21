@@ -10,12 +10,9 @@ import Cocoa
 import Foundation
 
 class JacktripViewController: NSViewController {
-    let portData = [
-        ["port": "0", "operation": "connect"],
-        ["port": "1", "operation": "connect"],
-        ["port": "2", "operation": "connect"],
-        ["port": "3", "operation": "connect"]
-    ]
+    let portData = stride(from: 0, to: 10, by: 1).map {
+        ["port": String($0), "operation": "connect"]
+    }
     
     @IBOutlet var serverTableView: NSTableView!
     @IBOutlet var logTextView: NSTextView!
