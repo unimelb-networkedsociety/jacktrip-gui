@@ -82,7 +82,6 @@ class JacktripCore {
           object: task, queue: nil) { notification -> Void in
             NotificationCenter.default.removeObserver(obs2)
             print("terminated")
-            
             if let id = self.jacktripProcesses.index(of: task) {
                 self.jacktripProcesses.remove(at: id)
             }

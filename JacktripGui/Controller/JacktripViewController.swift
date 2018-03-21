@@ -24,7 +24,7 @@ class JacktripViewController: NSViewController {
     
     @IBAction func clientOperation(_ sender: ProcessTrigger) {
         if (sender.title == "connect") {
-             sender.process = JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
+            sender.process = JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
         } else {
             JacktripCore.instance.killProcess(target: sender.process!)
         }
@@ -47,7 +47,7 @@ class JacktripViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(JacktripViewController.updateLog), name: NSNotification.Name(rawValue: ProcessPipeNotificationKey), object: nil)
-            
+
         self.serverTableView.delegate = self
         self.serverTableView.dataSource = self
     }
@@ -80,4 +80,3 @@ extension JacktripViewController:NSTableViewDataSource, NSTableViewDelegate{
         }
     }
 }
-
