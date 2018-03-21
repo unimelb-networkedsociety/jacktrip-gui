@@ -3,7 +3,7 @@
 The application supports MacOS only. 
 
 ### Download and Installation
-Go to the <b>releases</b> tab, download, uncompress, and it's ready to go.
+Go to the <b>[releases](https://github.com/unimelb-networkedsociety/jacktrip-gui/releases/tag/v1.0-alpha)</b>, download  <b>JacktripGui.app.zip</b>, uncompress, and open System Preferences > Security & Privacy > General > Choose JacktripGui.app Open Anyway.
 
 ### Prerequisite
 - Jack for OS X. (Find the link here https://ccrma.stanford.edu/software/ jacktrip/osx/index.html or http://jackaudio.org/downloads/ choose Jack2 binary)
