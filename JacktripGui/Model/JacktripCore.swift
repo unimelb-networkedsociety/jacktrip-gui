@@ -19,14 +19,22 @@ class JacktripCore {
         }
     }
     
-    func startServer(_ port: String) -> Process {
-        // shell command to start server: jacktrip -s [port]
-        return invokeProcess(args:["-s", "-o\(port)0"])
+    func startServer(_ port: String, numchannels: String = "2", queue: String = "4",
+                     redundancy: String = "1", bitres: String = "16") -> Process {
+        // shell command to start server: jacktrip -s [port] -n -q -r -b
+        print(numchannels, queue, redundancy, bitres)
+        return invokeProcess(
+            args:["-s", "-o\(port)0", "-n\(numchannels)", "-q\(queue)", "-r\(redundancy)", "-b\(bitres)"]
+        )
     }
     
-    func startClient(_ ip: String, _ port: String) -> Process {
-        // shell command to connect: jacktrip -c [ip] [port]
-        return invokeProcess(args:["-c", ip, "-o\(port)0"])
+    func startClient(_ ip: String, _ port: String, numchannels: String = "2", queue: String = "4",
+                     redundancy: String = "1", bitres: String = "16") -> Process {
+        print(numchannels, queue, redundancy, bitres)
+        // shell command to connect: jacktrip -c [ip] [port] -n -q -r -b
+        return invokeProcess(
+            args:["-c", ip, "-o\(port)0", "-n\(numchannels)", "-q\(queue)", "-r\(redundancy)", "-b\(bitres)"]
+        )
     }
     
     func checkProcessStatus(target: Process) -> Bool {

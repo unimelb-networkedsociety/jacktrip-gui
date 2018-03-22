@@ -18,10 +18,17 @@ class JacktripViewController: NSViewController {
     @IBOutlet var logTextView: NSTextView!
     @IBOutlet weak var ip: NSTextField!
     @IBOutlet weak var port: NSTextField!
+    @IBOutlet weak var numchannels: NSTextField!
+    @IBOutlet weak var redundancy: NSTextField!
+    @IBOutlet weak var bitres: NSTextField!
+    @IBOutlet weak var queue: NSTextField!
     
     @IBAction func clientOperation(_ sender: ProcessTrigger) {
         if (sender.title == "connect") {
-            sender.process = JacktripCore.instance.startClient(ip.stringValue, port.stringValue)
+            sender.process = JacktripCore.instance.startClient(
+                ip.stringValue, port.stringValue,
+                numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
+            )
         } else {
             JacktripCore.instance.killProcess(target: sender.process!)
         }
@@ -31,7 +38,9 @@ class JacktripViewController: NSViewController {
         if (sender.title == "connect") {
             let indexPath = serverTableView.row(for: sender)
             let port = portData[indexPath]["port"]!
-            sender.process = JacktripCore.instance.startServer(port)
+            sender.process = JacktripCore.instance.startServer(
+                port, numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
+            )
         } else {
             JacktripCore.instance.killProcess(target: sender.process!)
         }
@@ -47,6 +56,13 @@ class JacktripViewController: NSViewController {
 
         self.serverTableView.delegate = self
         self.serverTableView.dataSource = self
+        
+        // Some textfields only allow number input
+        port.formatter          = NumberOnlyFormatter()
+        numchannels.formatter   = NumberOnlyFormatter()
+        queue.formatter         = NumberOnlyFormatter()
+        redundancy.formatter    = NumberOnlyFormatter()
+        bitres.formatter        = NumberOnlyFormatter()
     }
     
     override var representedObject: Any? {
