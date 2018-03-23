@@ -15,6 +15,7 @@
 		37742275205A3BD800793886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37742274205A3BD800793886 /* Assets.xcassets */; };
 		37742278205A3BD800793886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37742276205A3BD800793886 /* Main.storyboard */; };
 		37DB0BF42063745C0062376D /* NumberOnlyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DB0BF32063745C0062376D /* NumberOnlyFormatter.swift */; };
+		37DB0BF82064AECC0062376D /* BlankWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DB0BF72064AECC0062376D /* BlankWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		37742279205A3BD800793886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3774227A205A3BD800793886 /* JacktripGui.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JacktripGui.entitlements; sourceTree = "<group>"; };
 		37DB0BF32063745C0062376D /* NumberOnlyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOnlyFormatter.swift; sourceTree = "<group>"; };
+		37DB0BF72064AECC0062376D /* BlankWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 		370B4A682061D9EB00DD0ABE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37DB0BF72064AECC0062376D /* BlankWindow.swift */,
 				370B4A662061D9E200DD0ABE /* ProcessTrigger.swift */,
 				37DB0BF32063745C0062376D /* NumberOnlyFormatter.swift */,
 			);
@@ -182,6 +185,7 @@
 				370B4A632060B9B300DD0ABE /* GlobalConstants.swift in Sources */,
 				370B4A672061D9E200DD0ABE /* ProcessTrigger.swift in Sources */,
 				37DB0BF42063745C0062376D /* NumberOnlyFormatter.swift in Sources */,
+				37DB0BF82064AECC0062376D /* BlankWindow.swift in Sources */,
 				370B4A6C2061FDAD00DD0ABE /* JacktripViewController.swift in Sources */,
 				370B4A612060AB9500DD0ABE /* JacktripCore.swift in Sources */,
 			);
@@ -317,7 +321,7 @@
 				DEVELOPMENT_TEAM = Z4D95JBCN9;
 				INFOPLIST_FILE = "JacktripGui/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nsi.JacktripGui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -334,7 +338,7 @@
 				DEVELOPMENT_TEAM = Z4D95JBCN9;
 				INFOPLIST_FILE = "JacktripGui/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nsi.JacktripGui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

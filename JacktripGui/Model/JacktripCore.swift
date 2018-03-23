@@ -86,7 +86,13 @@ class JacktripCore {
     
     private func invokeProcess(args: [String]) -> Process {
         let task = Process()
-        task.executableURL = URL(fileURLWithPath: jacktripURL)
+
+        if #available(OSX 10.13, *) {
+            task.executableURL = URL(fileURLWithPath: jacktripURL)
+        } else {
+            task.launchPath = jacktripURL
+        }
+
         task.arguments = args;
         jacktripProcesses.append(task)
         
@@ -121,10 +127,15 @@ class JacktripCore {
             }
         }
         
-        do {
-            try task.run()
-        } catch {
-            print("Unexpected error: \(error).")
+        if #available(OSX 10.13, *) {
+            do {
+                try task.run()
+            } catch {
+                print("Unexpected error: \(error).")
+            }
+        } else {
+            // Fallback on earlier versions
+            task.launch()
         }
         
         return task
