@@ -19,22 +19,48 @@ class JacktripCore {
         }
     }
     
-    func startServer(_ port: String, numchannels: String = "2", queue: String = "4",
-                     redundancy: String = "1", bitres: String = "16") -> Process {
+    func startServer(_ port: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
         // shell command to start server: jacktrip -s [port] -n -q -r -b
-        print(numchannels, queue, redundancy, bitres)
-        return invokeProcess(
-            args:["-s", "-o\(port)0", "-n\(numchannels)", "-q\(queue)", "-r\(redundancy)", "-b\(bitres)"]
-        )
+        var _args = ["-s", "-o\(port)0"]
+
+        if (!numchannels.isEmpty) {
+            _args.append("-n\(numchannels)")
+        }
+
+        if (!queue.isEmpty) {
+            _args.append("-q\(queue)")
+        }
+
+        if (!redundancy.isEmpty) {
+            _args.append("-r\(redundancy)")
+        }
+
+        if (!bitres.isEmpty) {
+            _args.append("-b\(bitres)")
+        }
+        return invokeProcess(args: _args)
     }
     
-    func startClient(_ ip: String, _ port: String, numchannels: String = "2", queue: String = "4",
-                     redundancy: String = "1", bitres: String = "16") -> Process {
-        print(numchannels, queue, redundancy, bitres)
+    func startClient(_ ip: String, _ port: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
         // shell command to connect: jacktrip -c [ip] [port] -n -q -r -b
-        return invokeProcess(
-            args:["-c", ip, "-o\(port)0", "-n\(numchannels)", "-q\(queue)", "-r\(redundancy)", "-b\(bitres)"]
-        )
+        var _args = ["-c", ip, "-o\(port)0"]
+
+        if (!numchannels.isEmpty) {
+            _args.append("-n\(numchannels)")
+        }
+
+        if (!queue.isEmpty) {
+            _args.append("-q\(queue)")
+        }
+
+        if (!redundancy.isEmpty) {
+            _args.append("-r\(redundancy)")
+        }
+
+        if (!bitres.isEmpty) {
+            _args.append("-b\(bitres)")
+        }
+        return invokeProcess(args: _args)
     }
     
     func checkProcessStatus(target: Process) -> Bool {
