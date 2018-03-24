@@ -8,8 +8,25 @@
 
 import Cocoa
 
+enum ProcessStatus { case idle; case running }
+
 class ProcessTrigger: NSButton {
-    var _process : Process?
+    private var _process: Process?
+    private var _status: ProcessStatus = .idle
+
+    var status: ProcessStatus {
+        get {
+            return _status
+        }
+        set {
+            _status = newValue
+            if (_status == .running) {
+                self.title = "Stop"
+            } else {
+                self.title = "Start"
+            }
+        }
+    }
     
     // Hold a reference of the model
     var process : Process? {
@@ -21,14 +38,19 @@ class ProcessTrigger: NSButton {
             if let p = _process {
                 notifyProcessTermination(p)
                 if p.isRunning {
-                    self.title = "disconnect"
+                    status = .running
                 } else {
-                    self.title = "connect"
+                    status = .idle
                 }
             } else {
-                self.title = "connect"
+                status = .idle
             }
         }
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.status = .idle
     }
     
     private func notifyProcessTermination(_ process: Process) {

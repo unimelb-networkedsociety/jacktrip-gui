@@ -10,11 +10,7 @@ import Cocoa
 import Foundation
 
 class JacktripViewController: NSViewController {
-    let portData = stride(from: 0, to: 10, by: 1).map {
-        ["port": String($0), "operation": "connect"]
-    }
-    
-    @IBOutlet var serverTableView: NSTableView!
+    @IBOutlet var serverTableView: ServerTableView!
     @IBOutlet var logTextView: NSTextView!
     @IBOutlet weak var ip: NSTextField!
     @IBOutlet weak var port: NSTextField!
@@ -24,7 +20,7 @@ class JacktripViewController: NSViewController {
     @IBOutlet weak var queue: NSTextField!
     
     @IBAction func clientOperation(_ sender: ProcessTrigger) {
-        if (sender.title == "connect") {
+        if (sender.status == .idle) {
             sender.process = JacktripCore.instance.startClient(
                 ip.stringValue, port.stringValue,
                 numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
@@ -35,12 +31,13 @@ class JacktripViewController: NSViewController {
     }
     
     @IBAction func serverOperation(_ sender: ProcessTrigger) {
-        if (sender.title == "connect") {
+        if (sender.status == .idle) {
             let indexPath = serverTableView.row(for: sender)
-            let port = portData[indexPath]["port"]!
-            sender.process = JacktripCore.instance.startServer(
-                port, numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
-            )
+            if let port = serverTableView.getPortNumber(index: indexPath) {
+                sender.process = JacktripCore.instance.startServer(
+                    port, numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
+                )
+            }
         } else {
             JacktripCore.instance.killProcess(target: sender.process!)
         }
@@ -53,9 +50,6 @@ class JacktripViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(JacktripViewController.updateLog), name: NSNotification.Name(rawValue: ProcessPipeNotificationKey), object: nil)
-
-        self.serverTableView.delegate = self
-        self.serverTableView.dataSource = self
         
         // Some textfields only allow number input
         port.formatter          = NumberOnlyFormatter()
@@ -73,23 +67,5 @@ class JacktripViewController: NSViewController {
     
     @objc func updateLog() {
         logTextView.string = JacktripCore.instance.output
-    }
-}
-
-extension JacktripViewController:NSTableViewDataSource, NSTableViewDelegate{
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return portData.count
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
-        if tableColumn?.identifier.rawValue == "operation"{
-            let result = tableView.makeView(withIdentifier:NSUserInterfaceItemIdentifier(rawValue: "operation"), owner: self) as! NSButton
-            result.title = portData[row]["operation"]!
-            return result
-        } else {
-            let result = tableView.makeView(withIdentifier:(tableColumn?.identifier)!, owner: self) as! NSTableCellView
-            result.textField?.stringValue = portData[row][(tableColumn?.identifier.rawValue)!]!
-            return result
-        }
     }
 }
