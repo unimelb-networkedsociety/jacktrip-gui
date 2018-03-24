@@ -50,13 +50,6 @@ class JacktripViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(JacktripViewController.updateLog), name: NSNotification.Name(rawValue: ProcessPipeNotificationKey), object: nil)
-        
-        // Some textfields only allow number input
-        port.formatter          = NumberOnlyFormatter()
-        numchannels.formatter   = NumberOnlyFormatter()
-        queue.formatter         = NumberOnlyFormatter()
-        redundancy.formatter    = NumberOnlyFormatter()
-        bitres.formatter        = NumberOnlyFormatter()
     }
     
     override var representedObject: Any? {
