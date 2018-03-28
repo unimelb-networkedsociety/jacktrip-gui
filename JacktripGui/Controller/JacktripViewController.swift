@@ -13,7 +13,7 @@ class JacktripViewController: NSViewController {
     @IBOutlet var serverTableView: ServerTableView!
     @IBOutlet var logTextView: NSTextView!
     @IBOutlet weak var ip: NSTextField!
-    @IBOutlet weak var offset: NumberOnlyTextField! //port offset
+    @IBOutlet weak var offset: PortOffsetDropdown! //port offset
     @IBOutlet weak var numchannels: NSTextField!
     @IBOutlet weak var redundancy: NSTextField!
     @IBOutlet weak var bitres: NSTextField!

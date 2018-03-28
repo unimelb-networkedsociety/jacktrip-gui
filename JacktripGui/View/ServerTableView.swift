@@ -9,7 +9,7 @@
 import Cocoa
 
 class ServerTableView: NSTableView {
-    let portData = stride(from: 0, to: 90, by: 10).map {
+    let portData = stride(from: 0, to: 100, by: 10).map {
         ["offset": String($0), "operation": ""]
     }
 
