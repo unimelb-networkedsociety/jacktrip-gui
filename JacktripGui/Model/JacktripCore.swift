@@ -19,9 +19,13 @@ class JacktripCore {
         }
     }
     
-    func startServer(_ port: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
-        // shell command to start server: jacktrip -s [port] -n -q -r -b
-        var _args = ["-s", "-o\(port)0"]
+    func startServer(_ offset: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
+        // shell command to start server: jacktrip -s -o[port offset] -n -q -r -b
+        var _args = ["-s"]
+
+        if (!offset.isEmpty && offset != "0") {
+            _args.append("-o\(offset)")
+        }
 
         if (!numchannels.isEmpty) {
             _args.append("-n\(numchannels)")
@@ -41,9 +45,13 @@ class JacktripCore {
         return invokeProcess(args: _args)
     }
     
-    func startClient(_ ip: String, _ port: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
-        // shell command to connect: jacktrip -c [ip] [port] -n -q -r -b
-        var _args = ["-c", ip, "-o\(port)0"]
+    func startClient(_ ip: String, _ offset: String, numchannels: String, queue: String, redundancy: String, bitres: String) -> Process {
+        // shell command to connect: jacktrip -c [ip] -o[port offset] -n -q -r -b
+        var _args = ["-c", ip]
+
+        if (!offset.isEmpty && offset != "0") {
+            _args.append("-o\(offset)")
+        }
 
         if (!numchannels.isEmpty) {
             _args.append("-n\(numchannels)")
@@ -73,7 +81,6 @@ class JacktripCore {
                 process.terminate()
             }
         }
-        
         jacktripProcesses = []
     }
     

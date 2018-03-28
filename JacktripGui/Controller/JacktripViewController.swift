@@ -13,7 +13,7 @@ class JacktripViewController: NSViewController {
     @IBOutlet var serverTableView: ServerTableView!
     @IBOutlet var logTextView: NSTextView!
     @IBOutlet weak var ip: NSTextField!
-    @IBOutlet weak var port: NSTextField!
+    @IBOutlet weak var offset: NumberOnlyTextField! //port offset
     @IBOutlet weak var numchannels: NSTextField!
     @IBOutlet weak var redundancy: NSTextField!
     @IBOutlet weak var bitres: NSTextField!
@@ -22,7 +22,7 @@ class JacktripViewController: NSViewController {
     @IBAction func clientOperation(_ sender: ProcessTrigger) {
         if (sender.status == .idle) {
             sender.process = JacktripCore.instance.startClient(
-                ip.stringValue, port.stringValue,
+                ip.stringValue, offset.stringValue,
                 numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
             )
         } else {
@@ -33,9 +33,9 @@ class JacktripViewController: NSViewController {
     @IBAction func serverOperation(_ sender: ProcessTrigger) {
         if (sender.status == .idle) {
             let indexPath = serverTableView.row(for: sender)
-            if let port = serverTableView.getPortNumber(index: indexPath) {
+            if let offset = serverTableView.getPortOffset(index: indexPath) {
                 sender.process = JacktripCore.instance.startServer(
-                    port, numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
+                    offset, numchannels: numchannels.stringValue, queue: queue.stringValue, redundancy: redundancy.stringValue, bitres: bitres.stringValue
                 )
             }
         } else {

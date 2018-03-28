@@ -9,12 +9,12 @@
 import Cocoa
 
 class ServerTableView: NSTableView {
-    let portData = stride(from: 0, to: 10, by: 1).map {
-        ["port": String($0), "operation": ""]
+    let portData = stride(from: 0, to: 90, by: 10).map {
+        ["offset": String($0), "operation": ""]
     }
 
-    func getPortNumber(index: Int) -> String? {
-        if let ret = portData[index]["port"] {
+    func getPortOffset(index: Int) -> String? {
+        if let ret = portData[index]["offset"] {
             return ret
         } else {
             return nil

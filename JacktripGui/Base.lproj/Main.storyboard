@@ -733,9 +733,9 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Spn-b9-KJ5" customClass="NumberOnlyTextField" customModule="JacktripGui" customModuleProvider="target">
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Spn-b9-KJ5" userLabel="Port Offset" customClass="NumberOnlyTextField" customModule="JacktripGui" customModuleProvider="target">
                                                 <rect key="frame" x="340" y="0.0" width="277" height="22"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Port" drawsBackground="YES" id="5VD-19-WHq">
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Port Offset (eg: 10, 20, 30...)" drawsBackground="YES" id="5VD-19-WHq">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -786,14 +786,14 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="29" headerView="Wga-RL-EBw" viewBased="YES" id="wti-hw-zYU" customClass="ServerTableView" customModule="JacktripGui" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="640" height="143"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="642" height="143"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
-                                                                <tableColumn identifier="port" width="502" minWidth="40" maxWidth="1000" id="ahB-Gt-Uc8">
-                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Port">
+                                                                <tableColumn identifier="offset" width="504" minWidth="40" maxWidth="1000" id="ahB-Gt-Uc8" userLabel="Port Offset">
+                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Port Offset">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -806,13 +806,13 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="cSk-T9-fjW">
-                                                                            <rect key="frame" x="1" y="1" width="502" height="17"/>
+                                                                            <rect key="frame" x="1" y="1" width="504" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjY-AH-0VA">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="502" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="504" height="17"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" identifier="port" title="Table View Cell" id="7nk-Fd-EP3">
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" identifier="offset" title="Table View Cell" id="7nk-Fd-EP3">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -839,7 +839,7 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <button identifier="operation" verticalHuggingPriority="750" id="Nlp-vL-vmx" customClass="ProcessTrigger" customModule="JacktripGui" customModuleProvider="target">
-                                                                            <rect key="frame" x="506" y="1" width="132" height="32"/>
+                                                                            <rect key="frame" x="508" y="1" width="132" height="32"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y0r-Uv-Emz">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -855,8 +855,8 @@
                                                         </tableView>
                                                     </subviews>
                                                 </clipView>
-                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wRo-Cu-MJh">
-                                                    <rect key="frame" x="1" y="132" width="504" height="16"/>
+                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="wRo-Cu-MJh">
+                                                    <rect key="frame" x="1" y="150" width="640" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ZOy-Oo-BeU">
@@ -864,7 +864,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <tableHeaderView key="headerView" id="Wga-RL-EBw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="640" height="23"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="642" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
@@ -1103,7 +1103,7 @@
                         <outlet property="ip" destination="WKV-jT-vez" id="UQC-uZ-Bfo"/>
                         <outlet property="logTextView" destination="8Ua-5y-uhL" id="B6h-59-2pU"/>
                         <outlet property="numchannels" destination="pRp-We-x25" id="nJB-a1-Z0C"/>
-                        <outlet property="port" destination="Spn-b9-KJ5" id="QP6-9A-Gke"/>
+                        <outlet property="offset" destination="Spn-b9-KJ5" id="6yL-YZ-Upx"/>
                         <outlet property="queue" destination="Ok0-sF-ajW" id="0bV-qS-hW6"/>
                         <outlet property="redundancy" destination="5ML-3W-N4w" id="2A6-m3-eeb"/>
                         <outlet property="serverTableView" destination="wti-hw-zYU" id="APf-cs-YU4"/>
